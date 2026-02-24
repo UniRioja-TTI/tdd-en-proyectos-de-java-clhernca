@@ -3,7 +3,7 @@ package com.tt1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBStub {
+public class DBStub implements IDBStub {
     private List<ToDo> tareas = new ArrayList<>();
     private List<String> emails = new ArrayList<>();
 

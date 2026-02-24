@@ -2,9 +2,13 @@ package com.tt1;
 
 import java.util.List;
 
-public class Repositorio {
-    private DBStub db = new DBStub();
-
+public class Repositorio implements IRepositorio {
+    private IDBStub db;
+    
+    public Repositorio(IDBStub db) {
+        this.db = db;
+    }
+    
     public void guardarToDo(ToDo todo) {
         throw new UnsupportedOperationException("Clase aún no implementada.");
     }

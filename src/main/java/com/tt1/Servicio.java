@@ -3,8 +3,13 @@ package com.tt1;
 import java.time.LocalDate;
 
 public class Servicio {
-    private Repositorio repositorio = new Repositorio();
-    private MailerStub mailer = new MailerStub();
+    private IRepositorio repositorio;
+    private IMailerStub mailer;
+    
+    public Servicio(IRepositorio repositorio, IMailerStub mailer) {
+        this.repositorio = repositorio;
+        this.mailer = mailer;
+    }
 
     public void crearToDo(String nombre, LocalDate fechaLimite) {
         throw new UnsupportedOperationException("Clase aún no implementada.");
