@@ -11,24 +11,40 @@ public class Servicio {
         this.repositorio = repositorio;
         this.mailer = mailer;
     }
-
+    
     public void crearToDo(String nombre, LocalDate fechaLimite) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        ToDo todo = new ToDo();
+        todo.setNombre(nombre);
+        todo.setFechaLimite(fechaLimite);
+        repositorio.guardarToDo(todo);
+        comprobarVencidosYAlertar();
     }
 
     public void agregarEmail(String email) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        repositorio.guardarEmail(email);
+        comprobarVencidosYAlertar();
     }
 
     public void marcarComoFinalizada(String nombre) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        repositorio.marcarCompletado(nombre);
+        comprobarVencidosYAlertar();
     }
 
     public List<ToDo> listarPendientes() {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        comprobarVencidosYAlertar();
+        return repositorio.obtenerPendientes();
     }
 
     private void comprobarVencidosYAlertar() {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        List<ToDo> pendientes = repositorio.obtenerPendientes();
+        List<String> emails = repositorio.obtenerEmails();
+
+        for (ToDo t : pendientes) {
+            if (t.getFechaLimite().isBefore(LocalDate.now())) {
+                for (String email : emails) {
+                    mailer.enviarCorreo(email, "Tarea vencida: " + t.getNombre());
+                }
+            }
+        }
     }
 }

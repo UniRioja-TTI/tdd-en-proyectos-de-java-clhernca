@@ -6,28 +6,37 @@ import java.util.List;
 public class DBStub implements IDBStub {
     private List<ToDo> tareas = new ArrayList<>();
     private List<String> emails = new ArrayList<>();
-
+    
     public void añadirToDo(ToDo todo) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        tareas.add(todo);
     }
 
     public List<ToDo> obtenerTodos() {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return tareas;
     }
 
     public void marcarCompletado(String nombre) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        for (ToDo t : tareas) {
+            if (t.getNombre().equals(nombre)) {
+                t.setCompletado(true);
+            }
+        }
     }
 
     public void eliminarToDo(String nombre) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        for (int i = 0; i < tareas.size(); i++) {
+            if (tareas.get(i).getNombre().equals(nombre)) {
+                tareas.remove(i);
+                break;
+            }
+        }
     }
 
     public void añadirEmail(String email) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        emails.add(email);
     }
 
     public List<String> obtenerEmails() {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return emails;
     }
 }
