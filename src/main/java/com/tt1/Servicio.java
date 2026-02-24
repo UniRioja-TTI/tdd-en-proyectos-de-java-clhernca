@@ -1,6 +1,7 @@
 package com.tt1;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Servicio {
     private IRepositorio repositorio;
@@ -23,7 +24,7 @@ public class Servicio {
         throw new UnsupportedOperationException("Clase aún no implementada.");
     }
 
-    public void listarPendientes() {
+    public List<ToDo> listarPendientes() {
         throw new UnsupportedOperationException("Clase aún no implementada.");
     }
 
